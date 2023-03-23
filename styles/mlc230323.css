@@ -1,0 +1,139 @@
+/* mobile first */
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background-color: var(--background);
+  color: var(--pink-text);
+  font-family: main-text;
+  font-size: var(--main-text-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  background: var(--background) url('../assets/graphics/bg_prtrt.jpg') no-repeat center center;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+
+main {
+  width: 80%;
+  max-width: 96%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  color: var(--cta-text-color);
+}
+
+a:hover {
+  color: var(--cta-text-hover-color);
+  cursor: pointer;
+}
+
+a.button {
+  color: var(--button-text-colour);
+  display: block;
+  margin: 0.5em;
+  padding: 0.2em;
+  border: 2px solid var(--pink-text);
+  border-radius: 10px;
+  background-color: var(--button-background-colour);
+  transition: background-color 0.15s ease-in;
+}
+
+a.button:hover {
+  background-color: var(--button-hover-background-colour);
+}
+
+h1 {
+  text-align: left;
+  /* width: 50%; */
+  border-bottom: 1px white solid;
+}
+
+p {
+  color: var(--std-text-color);
+  font-size: var(--std-text-size);
+}
+
+img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+#logo-container {
+  display: block;
+  /* min-height: 73vh; */
+  max-height: 90vh;
+}
+
+#logo-container,
+#countdown-container,
+#lineup-container,
+#about-container,
+#ticket-container {
+  text-align: center;
+  flex-basis: 100%;
+}
+
+#lineup-container,
+#about-container,
+#ticket-container {
+  padding-top: 40px;
+}
+
+#countdown {
+  font-size: clamp(0.5em, 4vw, 1.2em);
+}
+
+#about-container {
+  text-align: left;
+}
+#about-container p {
+  margin: 0.5em 4em;
+}
+
+footer {
+  flex-basis: 100%;
+  margin-top: 1em;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#socials img {
+  padding: 1em;
+}
+
+footer a::after,
+footer a:visited::after {
+  content: '';
+}
+
+/* responsive desktop layout */
+@media screen and (min-width: 600px) {
+  body {
+    background: var(--background) url('../assets/graphics/bg.jpg') no-repeat center center;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+  }
+
+  main {
+    width: 60%;
+  }
+}
+
+/* developer */
+#dev {
+  position: fixed;
+  top: 30px;
+  left: 0;
+}
