@@ -135,5 +135,5 @@ footer a:visited::after {
 #dev {
   position: fixed;
   top: 30px;
-  left: 0;
+  left: 10px;
 }
