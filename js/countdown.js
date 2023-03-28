@@ -1,6 +1,6 @@
 /** ****Functions**** */
 
-const checkCountdownTarget = function (content) {
+const checkCountdownTarget = function (today) {
   const navContainer = document.getElementsByTagName('nav')[0];
   navContainer.style.display = 'block';
   if (dev) {
@@ -24,7 +24,7 @@ const checkCountdownTarget = function (content) {
   return content.launch;
 };
 
-const timeToGo = function (d) {
+const timeToGo = function (d, today) {
   let diff = d - today;
 
   // Allow for previous times
@@ -39,17 +39,22 @@ const timeToGo = function (d) {
   return [days, hours, mins, secs];
 };
 
-const doCountdown = (a = true) => {
+const doCountdown = () => {
+  const today = new Date();
   const countdownContainer = document.getElementById('countdown');
-  if (!a) return (countdownContainer.innerHTML = '');
-  const currentStatus = checkCountdownTarget(content);
+  const countdownTitleContainer = document.getElementById('countdown-title');
+  const currentStatus = checkCountdownTarget(today);
   if (JSON.stringify(currentStatus) !== JSON.stringify(current.status)) {
     current.status = currentStatus;
     createCurrentPage();
-    console.log(current.status);
   }
-  let countdown = timeToGo(currentStatus.date);
-  countdownContainer.innerHTML = createCountdownString(timeToGo(current.status.date));
+  if (!current.status.showCountdown) {
+    countdownTitleContainer.innerHTML = '';
+    return (countdownContainer.innerHTML = '');
+  }
+
+  countdownTitleContainer.innerHTML = current.status.showCountdown;
+  countdownContainer.innerHTML = createCountdownString(timeToGo(current.status.date, today));
   return;
 };
 
@@ -60,21 +65,6 @@ const createCountdownString = (countdown) => {
   if (countdown[2] > 0) countdownStringArr.push(`${countdown[2]} minute${countdown[2] === 1 ? '' : 's'}`);
   if (countdown[3] > 0) countdownStringArr.push(`${countdown[3]} second${countdown[3] === 1 ? '' : 's'}`);
   return countdownStringArr.join(', ');
-};
-
-const showCountdown = (contentObj) => {
-  const countdownTitleContainer = document.getElementById('countdown-title');
-  if (!contentObj.showCountdown) {
-    countdownTitleContainer.innerHTML = '';
-    clearInterval(countdownInterval);
-    doCountdown(false);
-    return;
-  }
-  // target for countdown and title
-  countdownTitleContainer.innerHTML = contentObj.showCountdown;
-  clearInterval(countdownInterval);
-  countdownInterval = setInterval(doCountdown, 1000);
-  return;
 };
 
 const showLineup = (contentObj) => {
@@ -112,9 +102,7 @@ const showTicketButton = (contentObj) => {
 };
 
 const createCurrentPage = () => {
-  console.log(current.status);
-  // let contentObj = checkCountdownTarget(content);
-  showCountdown(current.status);
+  // showCountdown();
   showLineup(current.status);
   showAbout(current.status);
   showTicketButton(current.status);
@@ -124,9 +112,6 @@ const createCurrentPage = () => {
 
 // glabal countdown interval so it can be reset
 let countdownInterval;
-
-// significant date variables
-const today = new Date(2023, 02, 27, 9, 59, 50);
 
 // set content variables
 const content = {
@@ -202,27 +187,10 @@ if (dev) {
 }
 // end dev
 
-// delete this for real dates
-const incrementToday = () => {
-  today.setTime(today.getTime() + 1000);
-};
-setInterval(incrementToday, 1000);
-
 // website status object to listen to
 let current = {
   status: false,
 };
-// const changeListener = {
-//   set(target, prop, reciever) {
-//     createCurrentPage();
-
-//     target[prop] = reciever;
-//   },
-// };
-// const currentProxy = new Proxy(current, changeListener);
-
-// target for countdown
-const countdownTitleContainer = document.getElementById('countdown-title');
 
 // navigation listeners
 const navList = document.getElementById('nav-bar').getElementsByTagName('li');
@@ -232,8 +200,7 @@ for (const liItem of navList) {
   };
 }
 // Check where we are in the process
-{
-  const currentStatus = checkCountdownTarget(content);
-  if (JSON.stringify(currentStatus) !== JSON.stringify(current.status)) current.status = currentStatus;
-}
+const currentStatus = checkCountdownTarget();
+if (JSON.stringify(currentStatus) !== JSON.stringify(current.status)) current.status = currentStatus;
+countdownInterval = setInterval(doCountdown, 1000);
 createCurrentPage();
