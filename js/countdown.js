@@ -44,17 +44,17 @@ const doCountdown = () => {
   const countdownContainer = document.getElementById('countdown');
   const countdownTitleContainer = document.getElementById('countdown-title');
   const currentStatus = checkCountdownTarget(today);
-  if (JSON.stringify(currentStatus) !== JSON.stringify(current.status)) {
-    current.status = currentStatus;
+  if (JSON.stringify(currentStatus) !== JSON.stringify(status)) {
+    status = currentStatus;
     createCurrentPage();
   }
-  if (!current.status.showCountdown) {
+  if (!status.showCountdown) {
     countdownTitleContainer.innerHTML = '';
     return (countdownContainer.innerHTML = '');
   }
 
-  countdownTitleContainer.innerHTML = current.status.showCountdown;
-  countdownContainer.innerHTML = createCountdownString(timeToGo(current.status.date, today));
+  countdownTitleContainer.innerHTML = status.showCountdown;
+  countdownContainer.innerHTML = createCountdownString(timeToGo(status.date, today));
   return;
 };
 
@@ -103,9 +103,9 @@ const showTicketButton = (contentObj) => {
 
 const createCurrentPage = () => {
   // showCountdown();
-  showLineup(current.status);
-  showAbout(current.status);
-  showTicketButton(current.status);
+  showLineup(status);
+  showAbout(status);
+  showTicketButton(status);
 };
 
 /** EXECUTE */
@@ -187,10 +187,8 @@ if (dev) {
 }
 // end dev
 
-// website status object to listen to
-let current = {
-  status: false,
-};
+// the state of the festival (lineup countdown, presale, general sale)
+let status = false;
 
 // navigation listeners
 const navList = document.getElementById('nav-bar').getElementsByTagName('li');
@@ -201,6 +199,6 @@ for (const liItem of navList) {
 }
 // Check where we are in the process
 const currentStatus = checkCountdownTarget();
-if (JSON.stringify(currentStatus) !== JSON.stringify(current.status)) current.status = currentStatus;
+if (JSON.stringify(currentStatus) !== JSON.stringify(status)) status = currentStatus;
 countdownInterval = setInterval(doCountdown, 1000);
 createCurrentPage();
