@@ -16,22 +16,16 @@ const checkCountdownTarget = function (content) {
         return content.general;
     }
   }
-  if (today > content.onsale.date) return content.general;
-  if (today > content.presale.date) return content.onsale;
-  if (today > content.launch.date) return content.presale;
+  if (today >= content.onsale.date) return content.general;
+  if (today >= content.presale.date) return content.onsale;
+  if (today >= content.launch.date) return content.presale;
   // if it's the launch countdown, we don't need navigation
   navContainer.style.display = 'none';
   return content.launch;
 };
 
 const timeToGo = function (d) {
-  // Utility to add leading zero
-  function z(n) {
-    return (n < 10 ? '0' : '') + n;
-  }
-
-  // Convert string to date object
-  let diff = d - new Date();
+  let diff = d - today;
 
   // Allow for previous times
   diff = Math.abs(diff);
@@ -48,14 +42,24 @@ const timeToGo = function (d) {
 const doCountdown = (a = true) => {
   const countdownContainer = document.getElementById('countdown');
   if (!a) return (countdownContainer.innerHTML = '');
-  let countdown = timeToGo(checkCountdownTarget(content).date);
-  const dayString = countdown[0] > 0 ? `${countdown[0]} day${countdown[0] === 1 ? '' : 's'}, ` : '';
-  const hourString = countdown[1] > 0 ? `${countdown[1]} hour${countdown[1] === 1 ? '' : 's'}, ` : '';
-  const minuteString = countdown[2] > 0 ? `${countdown[2]} minute${countdown[2] === 1 ? '' : 's'}, ` : '';
-  const secondString = countdown[3] > 0 ? `${countdown[3]} second${countdown[3] === 1 ? '' : 's'}` : '';
-  const countdownString = `${dayString}${hourString}${minuteString}${secondString}`;
-  countdownContainer.innerHTML = countdownString;
+  const currentStatus = checkCountdownTarget(content);
+  if (JSON.stringify(currentStatus) !== JSON.stringify(current.status)) {
+    current.status = currentStatus;
+    createCurrentPage();
+    console.log(current.status);
+  }
+  let countdown = timeToGo(currentStatus.date);
+  countdownContainer.innerHTML = createCountdownString(timeToGo(current.status.date));
   return;
+};
+
+const createCountdownString = (countdown) => {
+  const countdownStringArr = [];
+  if (countdown[0] > 0) countdownStringArr.push(`${countdown[0]} day${countdown[0] === 1 ? '' : 's'}`);
+  if (countdown[1] > 0) countdownStringArr.push(`${countdown[1]} hour${countdown[1] === 1 ? '' : 's'}`);
+  if (countdown[2] > 0) countdownStringArr.push(`${countdown[2]} minute${countdown[2] === 1 ? '' : 's'}`);
+  if (countdown[3] > 0) countdownStringArr.push(`${countdown[3]} second${countdown[3] === 1 ? '' : 's'}`);
+  return countdownStringArr.join(', ');
 };
 
 const showCountdown = (contentObj) => {
@@ -108,11 +112,12 @@ const showTicketButton = (contentObj) => {
 };
 
 const createCurrentPage = () => {
-  let contentObj = checkCountdownTarget(content);
-  showCountdown(contentObj);
-  showLineup(contentObj);
-  showAbout(contentObj);
-  showTicketButton(contentObj);
+  console.log(current.status);
+  // let contentObj = checkCountdownTarget(content);
+  showCountdown(current.status);
+  showLineup(current.status);
+  showAbout(current.status);
+  showTicketButton(current.status);
 };
 
 /** EXECUTE */
@@ -121,16 +126,12 @@ const createCurrentPage = () => {
 let countdownInterval;
 
 // significant date variables
-// take into account clock change
-const today = new Date();
-const launch = today > new Date(2023, 02, 27, 01) ? new Date(2023, 02, 27, 9) : new Date(2023, 02, 27, 10);
-const presale = new Date(2023, 02, 29, 9);
-const onsale = new Date(2023, 02, 31, 9);
+const today = new Date(2023, 02, 27, 9, 59, 50);
 
 // set content variables
 const content = {
   launch: {
-    date: today > new Date(2023, 02, 27, 01) ? new Date(2023, 02, 27, 9) : new Date(2023, 02, 27, 10),
+    date: new Date(2023, 02, 27, 10),
     showCountdown: 'Lineup Announced In',
     lineup: false,
     about: false,
@@ -138,7 +139,7 @@ const content = {
     ticketUrl: 'http://eepurl.com/imQkyA',
   },
   presale: {
-    date: new Date(2023, 02, 29, 9),
+    date: new Date(2023, 02, 29, 10),
     showCountdown: 'Presale starts in',
     lineup: true,
     about: `We're all sad, so let's be sad together.<br>
@@ -149,7 +150,7 @@ const content = {
     ticketUrl: 'http://eepurl.com/imQkyA',
   },
   onsale: {
-    date: new Date(2023, 02, 31, 9),
+    date: new Date(2023, 02, 31, 10),
     showCountdown: false,
     lineup: true,
     about: `We're all sad, so let's be sad together.<br>
@@ -168,12 +169,12 @@ const content = {
       5 stages, 4 venues, 40+ bands.<br>
       Tickets on sale NOW.`,
     ticketText: 'Tickets',
-    ticketUrl: 'http://eepurl.com/imQkyA',
+    ticketUrl: 'https://tourlink.to/MiseryLovesCompany',
   },
 };
 
 // temp dev variable and options *** DELETE FOR PRODUCTION ***
-const dev = true;
+const dev = false;
 let devSel;
 if (dev) {
   const devContainer = document.getElementById('dev');
@@ -201,6 +202,25 @@ if (dev) {
 }
 // end dev
 
+// delete this for real dates
+const incrementToday = () => {
+  today.setTime(today.getTime() + 1000);
+};
+setInterval(incrementToday, 1000);
+
+// website status object to listen to
+let current = {
+  status: false,
+};
+// const changeListener = {
+//   set(target, prop, reciever) {
+//     createCurrentPage();
+
+//     target[prop] = reciever;
+//   },
+// };
+// const currentProxy = new Proxy(current, changeListener);
+
 // target for countdown
 const countdownTitleContainer = document.getElementById('countdown-title');
 
@@ -212,4 +232,8 @@ for (const liItem of navList) {
   };
 }
 // Check where we are in the process
+{
+  const currentStatus = checkCountdownTarget(content);
+  if (JSON.stringify(currentStatus) !== JSON.stringify(current.status)) current.status = currentStatus;
+}
 createCurrentPage();
