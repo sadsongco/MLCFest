@@ -98,6 +98,7 @@ const showTicketButton = (contentObj) => {
   const ticketLink = document.getElementById('ticket-link');
   ticketLink.href = contentObj.ticketUrl;
   ticketLink.innerHTML = contentObj.ticketText;
+  document.getElementById('ticket-title').style.visibility = contentObj.ticketText === 'Tickets' ? 'hidden' : 'visibile';
   return;
 };
 
