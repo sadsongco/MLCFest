@@ -16,6 +16,7 @@ const checkCountdownTarget = function (today) {
         return content.general;
     }
   }
+  if (today >= content.secondWave.date) return content.secondWave;
   if (today >= content.onsale.date) return content.general;
   if (today >= content.presale.date) return content.onsale;
   if (today >= content.launch.date) return content.presale;
@@ -44,17 +45,17 @@ const doCountdown = () => {
   const countdownContainer = document.getElementById('countdown');
   const countdownTitleContainer = document.getElementById('countdown-title');
   const currentStatus = checkCountdownTarget(today);
-  if (JSON.stringify(currentStatus) !== JSON.stringify(status)) {
-    status = currentStatus;
+  if (JSON.stringify(currentStatus) !== JSON.stringify(showStatus)) {
+    showStatus = currentStatus;
     createCurrentPage();
   }
-  if (!status.showCountdown) {
+  if (!showStatus.showCountdown) {
     countdownTitleContainer.innerHTML = '';
     return (countdownContainer.innerHTML = '');
   }
 
-  countdownTitleContainer.innerHTML = status.showCountdown;
-  countdownContainer.innerHTML = createCountdownString(timeToGo(status.date, today));
+  countdownTitleContainer.innerHTML = showStatus.showCountdown;
+  countdownContainer.innerHTML = createCountdownString(timeToGo(showStatus.date, today));
   return;
 };
 
@@ -74,9 +75,9 @@ const showLineup = (contentObj) => {
   lineupContainer.style.display = 'block';
   lineupContainer.innerHTML = '';
   lineupContainer.appendChild(lineupHeading);
-  const imageEl = document.createElement('img');
   const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-  imageEl.src = vw < 600 ? './assets/graphics/lineup-mobile.jpg' : './assets/graphics/lineup-desktop.jpg';
+  const imageEl = document.createElement('img');
+  imageEl.src = vw < 600 ? `./assets/graphics/${contentObj.lineupGraphic}-mobile.jpg` : `./assets/graphics/${contentObj.lineupGraphic}-desktop.jpg`;
   imageEl.alt = 'Misery Loves Company festival 2023 lineup, featuring Twin Atlantic, Yonaka, Gürl, Immerse, InMe and many more';
   imageEl.style.width = Math.round(vw * 0.9);
   return lineupContainer.appendChild(imageEl);
@@ -104,9 +105,9 @@ const showTicketButton = (contentObj) => {
 
 const createCurrentPage = () => {
   // showCountdown();
-  showLineup(status);
-  showAbout(status);
-  showTicketButton(status);
+  showLineup(showStatus);
+  showAbout(showStatus);
+  showTicketButton(showStatus);
 };
 
 /** EXECUTE */
@@ -117,7 +118,7 @@ let countdownInterval;
 // set content variables
 const content = {
   launch: {
-    date: new Date(2023, 02, 27, 10),
+    date: new Date(2023, 2, 27, 10),
     showCountdown: 'Lineup Announced In',
     lineup: false,
     about: false,
@@ -125,9 +126,10 @@ const content = {
     ticketUrl: 'http://eepurl.com/imQkyA',
   },
   presale: {
-    date: new Date(2023, 02, 29, 10),
+    date: new Date(2023, 2, 29, 10),
     showCountdown: 'Presale starts in',
     lineup: true,
+    lineupGraphic: 'lineup',
     about: `We're all sad, so let's be sad together.<br>
       Bristol's brand new alternative festival.<br>
       5 stages, 4 venues, 40+ bands.<br>
@@ -136,9 +138,10 @@ const content = {
     ticketUrl: 'http://eepurl.com/imQkyA',
   },
   onsale: {
-    date: new Date(2023, 02, 31, 10),
+    date: new Date(2023, 2, 31, 10),
     showCountdown: false,
     lineup: true,
+    lineupGraphic: 'lineup',
     about: `We're all sad, so let's be sad together.<br>
       Bristol's brand new alternative festival.<br>
       5 stages, 4 venues, 40+ bands.<br>
@@ -146,50 +149,39 @@ const content = {
     ticketText: 'Presale',
     ticketUrl: 'http://eepurl.com/imQkyA',
   },
-  general: {
-    date: new Date(2023, 08, 30, 18),
+  secondWave: {
+    date: new Date(2023, 5, 16, 10),
     showCountdown: false,
     lineup: true,
+    lineupGraphic: 'secondwave',
+    about: `We're all sad, so let's be sad together.<br>
+      Bristol's brand new alternative festival.<br>
+      5 stages, 4 venues, 40+ bands.<br>
+      Second wave of line up just announced! Joining the lineup we have Heriot, Fearless Vampire Killers, the Hara and The Xcerts and 15+ other bands!<br>
+      Tickets on sale NOW. Pay in 3 via Paypal at checkout!`,
+    ticketText: 'Tickets',
+    ticketUrl: 'https://premier.ticketek.co.uk/shows/show.aspx?sh=MISERYLO2',
+  },
+  general: {
+    date: new Date(2023, 8, 30, 18),
+    showCountdown: false,
+    lineup: true,
+    lineupGraphic: 'lineup',
     about: `We're all sad, so let's be sad together.<br>
       Bristol's brand new alternative festival.<br>
       5 stages, 4 venues, 40+ bands.<br>
       Tickets on sale NOW.`,
     ticketText: 'Tickets',
-    ticketUrl: 'https://tourlink.to/MiseryLovesCompany',
+    ticketUrl: 'https://premier.ticketek.co.uk/shows/show.aspx?sh=MISERYLO2',
   },
 };
 
 // temp dev variable and options *** DELETE FOR PRODUCTION ***
 const dev = false;
 let devSel;
-if (dev) {
-  const devContainer = document.getElementById('dev');
-  devSel = document.createElement('select');
-  const launchDev = document.createElement('option');
-  launchDev.value = 'launch';
-  launchDev.innerHTML = 'Countdown to lineup reveal';
-  const presaleDev = document.createElement('option');
-  presaleDev.value = 'presale';
-  presaleDev.innerHTML = 'Countdown to presale';
-  const onsaleDev = document.createElement('option');
-  onsaleDev.value = 'onsale';
-  onsaleDev.innerHTML = 'Presale live';
-  const doneDev = document.createElement('option');
-  doneDev.value = 'false';
-  doneDev.innerHTML = 'General Sale live';
-  devSel.appendChild(launchDev);
-  devSel.appendChild(presaleDev);
-  devSel.appendChild(onsaleDev);
-  devSel.appendChild(doneDev);
-  devContainer.appendChild(devSel);
-  devSel.onchange = () => {
-    createCurrentPage();
-  };
-}
-// end dev
 
 // the state of the festival (lineup countdown, presale, general sale)
-let status = false;
+let showStatus = false;
 
 // navigation listeners
 const navList = document.getElementById('nav-bar').getElementsByTagName('li');
@@ -200,6 +192,6 @@ for (const liItem of navList) {
 }
 // Check where we are in the process
 const currentStatus = checkCountdownTarget();
-if (JSON.stringify(currentStatus) !== JSON.stringify(status)) status = currentStatus;
+if (JSON.stringify(currentStatus) !== JSON.stringify(showStatus)) showStatus = currentStatus;
 countdownInterval = setInterval(doCountdown, 1000);
 createCurrentPage();
