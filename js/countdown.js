@@ -157,7 +157,7 @@ const content = {
     about: `We're all sad, so let's be sad together.<br>
       Bristol's brand new alternative festival.<br>
       5 stages, 4 venues, 40+ bands.<br>
-      Second wave of line up just announced! Joining the lineup we have Heriot, Fearless Vampire Killers, the Hara and The Xcerts and 15+ other bands!<br>
+      Second wave of line up just announced! Joining the lineup we have Heriot, Fearless Vampire Killers, the Hara, The Xcerts, Witch Fever and 20+ other bands!<br>
       Tickets on sale NOW. Pay in 3 via Paypal at checkout!`,
     ticketText: 'Tickets',
     ticketUrl: 'https://premier.ticketek.co.uk/shows/show.aspx?sh=MISERYLO2',
