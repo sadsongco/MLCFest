@@ -153,7 +153,7 @@ const content = {
     date: new Date(2023, 5, 16, 10),
     showCountdown: false,
     lineup: true,
-    lineupGraphic: 'secondwave',
+    lineupGraphic: 'update',
     about: `We're all sad, so let's be sad together.<br>
       Bristol's brand new alternative festival.<br>
       5 stages, 4 venues, 40+ bands.<br>
@@ -166,7 +166,7 @@ const content = {
     date: new Date(2023, 8, 30, 18),
     showCountdown: false,
     lineup: true,
-    lineupGraphic: 'lineup',
+    lineupGraphic: 'update',
     about: `We're all sad, so let's be sad together.<br>
       Bristol's brand new alternative festival.<br>
       5 stages, 4 venues, 40+ bands.<br>
