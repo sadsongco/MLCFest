@@ -9,6 +9,6 @@
 </section>
 
 <section id="shows" class="typeContainer">
-  <div id="showList" class="showList" hx-get="admin/php/showList.php" hx-trigger="load, newShow from:body" hx-target="this"></div>
-  <div id="newShowForm" hx-get="admin/php/newShowForm.php" hx-trigger="load, clearShowForm from:body" hx-target="this"></div>
+  <div id="showList" class="showList" hx-get="admin/php/getShows.php" hx-trigger="load, newShow from:body" hx-target="this"></div>
+  <div id="newShowForm" hx-get="admin/php/newShowForm.php" hx-trigger="load, clearShowForm from:body, newVenue from:body, newArtist from:body" hx-target="this"></div>
 </section>
