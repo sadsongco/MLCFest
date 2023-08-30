@@ -1,0 +1,30 @@
+<h2>Add new Artist</h2>
+<form hx-post="admin/php/addArtist.php" target="this" class="newForm" autocomplete="on">
+  <label for="artistName">
+    Artist Name
+    <input type="text" name="name" id="artistName" required autocomplete="on" />
+  </label>
+  <label for="artistBio">
+    Artist Bio
+    <textarea name="bio" id="artistBio" cols="30" rows="10"></textarea>
+  </label>
+  <label for="instagram">
+    Instagram
+    <input type="text" name="instagram" id="instagram" />
+  </label>
+  <label for="twitter">
+    Twitter
+    <input type="text" name="twitter" id="twitter" />
+  </label>
+  <label for="threads">
+    Threads
+    <input type="text" name="threads" id="threads" />
+  </label>
+  <label for="facebook">
+    facebook
+    <input type="text" name="facebook" id="facebook" />
+  </label>
+  <label for="artistSubmit">
+    <input id="artistSubmit" name="submit" type="submit" value="Add Artist" />
+  </label>
+</form>

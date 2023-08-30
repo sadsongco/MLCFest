@@ -1,0 +1,35 @@
+<h2>Add New Show</h2>
+
+<form hx-post="admin/php/addShow.php" target="this" class="newForm" autocomplete="on">
+    <label for="venueSelect">
+        Select Venue
+        <select name="venue" id="venueSelect">
+            {{#venues}}
+                    {{> venueSelect}}
+            {{/venues}}
+        </select>
+    </label>
+    <label for="artistSelect">
+        Select Artist
+        <select name="artist" id="artistSelect">
+            {{#artists}}
+                        {{> artistSelect}}
+            {{/artists}}
+            </select>
+        </label>
+    <label for="startTime">
+        Show Start
+        <input type="datetime-local" name="start_time" id="startTime" value="2023-08-30T14:00">
+    </label>
+    <label for="endTime">
+        Show Start
+        <input type="datetime-local" name="end_time" id="endTime" value="2023-08-30T14:00">
+    </label>
+    <label for="showNotes">
+        Show Notes
+        <textarea name="notes" id="showNotes" cols="30" rows="10"></textarea>
+    </label>
+    <label for="showSubmit">
+        <input id="showSubmit" type="submit" value="Add Show" />
+      </label>
+</form>

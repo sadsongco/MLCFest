@@ -8,14 +8,8 @@ $m = new Mustache_Engine(array(
     'partials_loader' => new Mustache_Loader_FilesystemLoader('../templates/partials')
 ));
 
+$params = [];
 
-
-// $content = ["content"=>"STUFF"];
-
-// echo $m->render("venues");
-
-// echo $m->render("artists");
-
-echo $m->render("outline");
+echo $m->render("newVenueForm");
 
 ?>

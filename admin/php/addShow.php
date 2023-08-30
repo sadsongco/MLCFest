@@ -1,0 +1,24 @@
+<?php
+
+require_once("../../../secure/mlc/db_connect.php");
+
+foreach($_POST as $key=>$value) {
+    if ($key != "submit") {
+        $params[$key] = $value;
+    }
+}
+
+// try {
+//     $query = "INSERT INTO Venues VALUES (0, :name, :post_code, :address_1, :address_2, :city);";
+//     $stmt = $db->prepare($query);
+//     $stmt->execute($params);
+// }
+// catch(PDOException $e) {
+//     echo $e->getmessage();
+// }
+header ('HX-Trigger:clearShowForm');
+header ('HX-Trigger-After-Settle:newShow');
+
+require_once("../../../secure/mlc/db_disconnect.php");
+
+?>

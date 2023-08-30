@@ -1,0 +1,26 @@
+    <h2>Add new venue</h2>
+    <form hx-post="admin/php/addVenue.php" target="this" class="newForm" autocomplete="on">
+      <label for="venueName">
+        Venue Name
+        <input type="text" name="name" id="venueName" required autocomplete="on" />
+      </label>
+      <label for="venuePostcode">
+        Venue Postcode
+        <input type="text" name="post_code" id="venuePostcode" />
+      </label>
+      <label for="venueAddress1">
+        Venue Address 1
+        <input type="text" name="address_1" id="venueAddress1" />
+      </label>
+      <label for="venueAddress2">
+        Venue Address 2
+        <input type="text" name="address_2" id="venueAddress2" />
+      </label>
+      <label for="venueCity">
+        Venue City
+        <input type="text" name="city" id="venueCity" value="Bristol" />
+      </label>
+      <label for="venueSubmit">
+        <input id="venueSubmit" type="submit" value="Add Venue" />
+      </label>
+    </form>
