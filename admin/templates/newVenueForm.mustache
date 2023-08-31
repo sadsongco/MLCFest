@@ -1,26 +1,41 @@
-    <h2>Add new venue</h2>
-    <form hx-post="admin/php/addVenue.php" target="this" class="newForm" autocomplete="on">
+    {{^update}}
+      <h2>Add New Venue</h2>
+    {{/update}}
+    {{#update}}
+      <h2>Update Venue Info</h2>
+    {{/update}}
+    <form hx-post="admin/php/{{^update}}addVenue.php{{/update}}{{#update}}updateVenue.php{{/update}}" target="this" class="newForm" autocomplete="on">
       <label for="venueName">
         Venue Name
-        <input type="text" name="name" id="venueName" required autocomplete="on" />
+        <input type="text" name="name" id="venueName" required autocomplete="on" value="{{name}}" />
       </label>
       <label for="venuePostcode">
         Venue Postcode
-        <input type="text" name="post_code" id="venuePostcode" />
+        <input type="text" name="post_code" id="venuePostcode" value="{{post_code}}" />
       </label>
       <label for="venueAddress1">
         Venue Address 1
-        <input type="text" name="address_1" id="venueAddress1" />
+        <input type="text" name="address_1" id="venueAddress1" value="{{address_1}}" />
       </label>
       <label for="venueAddress2">
         Venue Address 2
-        <input type="text" name="address_2" id="venueAddress2" />
+        <input type="text" name="address_2" id="venueAddress2" value="{{address_2}}" />
       </label>
       <label for="venueCity">
         Venue City
-        <input type="text" name="city" id="venueCity" value="Bristol" />
+        <input type="text" name="city" id="venueCity" value="{{city}}" />
       </label>
-      <label for="venueSubmit">
-        <input id="venueSubmit" type="submit" value="Add Venue" />
-      </label>
+      {{^venue_id}}
+        <label for="venueSubmit">
+          Add Venue
+          <input id="venueSubmit" type="submit" value="Add Venue" />
+        </label>
+      {{/venue_id}}
+      {{#venue_id}}
+        <label for="venueUpdate">
+          Update Venue
+          <input type="hidden" name="venue_id" value="{{venue_id}}" />
+          <input id="venueUpdate" type="submit" name="venueUpdate" value="Update Venue" />
+        </label>
+      {{/venue_id}}
     </form>

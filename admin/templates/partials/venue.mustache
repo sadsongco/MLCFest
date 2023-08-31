@@ -1,0 +1,13 @@
+<div class="venue">
+  <div class="venueName">{{name}}</div>
+  <div class="venueAddress">{{address_1}}</div>
+  <div class="venueAddress">{{address_2}}</div>
+  <div class="venueAddress">{{city}}</div>
+  <div class="venueAddress">{{post_code}}</div>
+  <div class="venueEdit">
+    <button hx-get="admin/php/newVenueForm.php?edit={{venue_id}}" hx-trigger="click" hx-target="#newVenueForm">Edit Venue</button>
+  </div>  
+  <div class="venueEdir">
+    <button hx-get="admin/php/deleteVenue.php?id={{venue_id}}" hx-trigger="click" hx-target="this">Delete</button>
+  </div>  
+</div>
