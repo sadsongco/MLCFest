@@ -1,30 +1,45 @@
-<h2>Add new Artist</h2>
-<form hx-post="admin/php/addArtist.php" target="this" class="newForm" autocomplete="on">
+  {{^update}}
+    <h2>Add New Artist</h2>
+  {{/update}}
+  {{#update}}
+    <h2>Update Artist Info</h2>
+  {{/update}}
+  <form hx-post="admin/php/{{^update}}addArtist.php{{/update}}{{#update}}updateArtist.php{{/update}}" target="this" class="newForm" autocomplete="on">
   <label for="artistName">
     Artist Name
-    <input type="text" name="name" id="artistName" required autocomplete="on" />
+    <input type="text" name="name" id="artistName" required autocomplete="on" value="{{name}}" />
   </label>
   <label for="artistBio">
     Artist Bio
-    <textarea name="bio" id="artistBio" cols="30" rows="10"></textarea>
+    <textarea name="bio" id="artistBio" cols="30" rows="10">{{bio}}</textarea>
   </label>
   <label for="instagram">
     Instagram
-    <input type="text" name="instagram" id="instagram" />
+    <input type="text" name="instagram" id="instagram" value="{{instagram}}" />
   </label>
   <label for="twitter">
     Twitter
-    <input type="text" name="twitter" id="twitter" />
+    <input type="text" name="twitter" id="twitter" value="{{twitter}}" />
   </label>
   <label for="threads">
     Threads
-    <input type="text" name="threads" id="threads" />
+    <input type="text" name="threads" id="threads" value="{{threads}}" />
   </label>
   <label for="facebook">
     facebook
-    <input type="text" name="facebook" id="facebook" />
+    <input type="text" name="facebook" id="facebook" value="{{facebook}}" />
   </label>
-  <label for="artistSubmit">
-    <input id="artistSubmit" name="submit" type="submit" value="Add Artist" />
-  </label>
+      {{^artist_id}}
+        <label for="artistSubmit">
+          Add Artist
+          <input id="artistSubmit" type="submit" value="Add Artist" />
+        </label>
+      {{/artist_id}}
+      {{#artist_id}}
+        <label for="artistUpdate">
+          Update Artist
+          <input type="hidden" name="artist_id" value="{{artist_id}}" />
+          <input id="artistUpdate" type="submit" name="artistUpdate" value="Update Artist" />
+        </label>
+      {{/artist_id}}
 </form>

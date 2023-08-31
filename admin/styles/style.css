@@ -1,3 +1,12 @@
+section {
+  margin-bottom: 2em;
+}
+
+label {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
 .bold {
   background-color: aquamarine;
   font-size: 3em;
@@ -11,13 +20,23 @@
   max-width: 800ox;
 }
 
-label {
+.venue,
+.artist {
+  width: 70%;
   display: grid;
-  grid-template-columns: 1fr 3fr;
 }
 
 .venue {
-  width: 70%;
-  display: grid;
   grid-template-columns: 2fr repeat(6, 1fr);
+}
+
+.artist {
+  grid-template-columns: 2fr repeat(7, 1fr);
+}
+
+.artistBio {
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

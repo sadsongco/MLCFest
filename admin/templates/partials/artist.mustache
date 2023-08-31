@@ -1,0 +1,16 @@
+<div class="artist">
+  <div class="artistName">{{name}}</div>
+  <div class="artistBio">{{bio}}</div>
+  <div class="artistLink">{{instagram}}</div>
+  <div class="artistLink">{{twitter}}</div>
+  <div class="artistLink">{{threads}}</div>
+  <div class="artistLink">{{facebook}}</div>
+  <div class="artistEdit">
+    <button hx-get="admin/php/newArtistForm.php?edit={{artist_id}}" hx-trigger="click" hx-target="#newArtistForm">Edit Artist</button>
+  </div>  
+  <div class="venueEdit">
+    <button hx-get="admin/php/deleteArtist.php?id={{artist_id}}" hx-trigger="click" hx-confirm="Delete artist {{name}}? This will delete all shows for this artist." >
+        Delete
+    </button>
+  </div>  
+</div>
