@@ -4,10 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="../lib/htmx.min.js"></script>
+    <link rel="stylesheet" href="../styles/reset.css" />
+    <link rel="stylesheet" href="../styles/vars.css" />
     <link rel="stylesheet" href="admin/styles/style.css" />
     <title>Misery Loves Company Festival - Admin Page</title>
   </head>
   <body>
+    <h1>Misery Loves Company Festival</h1>
+    <h2>Admin Page</h2>
     <main hx-get="/admin/php/getContent.php" hx-trigger="load">Loading...</main>
   </body>
 </html>

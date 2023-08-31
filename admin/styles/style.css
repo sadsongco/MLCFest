@@ -1,3 +1,38 @@
+/* mobile first */
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background-color: var(--background);
+  color: #bbb;
+  font-family: main-text;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+h1 {
+  display: block;
+  flex-basis: 100%;
+  text-align: center;
+  font-size: 2em;
+  border-bottom: 1px white solid;
+}
+
+h2 {
+  font-size: 1.3em;
+}
+
+h2.containerTitle {
+  font-size: 1.8em;
+  position: absolute;
+  top: -10px;
+  background-color: black;
+  padding: 3px;
+}
+
 section {
   margin-bottom: 2em;
 }
@@ -7,10 +42,49 @@ label {
   grid-template-columns: 1fr 3fr;
 }
 
-.bold {
-  background-color: aquamarine;
-  font-size: 3em;
-  font-weight: 800;
+button,
+input[type='submit'] {
+  font-size: 0.7em;
+  color: #ccc;
+  background-color: #333;
+  border: 1px solid azure;
+  box-shadow: 2px 2px #777;
+  margin: 3px;
+  max-width: 10em;
+}
+
+.list {
+  border: 1px solid #222;
+  padding: 0.5em;
+  width: 80%;
+}
+
+.listItem,
+.listHeader {
+  padding: 0.2em;
+  display: flex;
+  align-items: center;
+}
+
+.listHeader {
+  background-color: var(--pink-text);
+  color: #fff;
+}
+
+.listItem:nth-of-type(odd) {
+  background-color: #333;
+}
+
+.listItem:nth-of-type(even) {
+  background-color: #222;
+}
+
+.typeContainer {
+  position: relative;
+  margin: 2em 0;
+  padding: 2em 0.5em 0.5em 0.5em;
+  border-radius: 10px;
+  border: 1px solid #444;
 }
 
 .newForm {
@@ -22,7 +96,7 @@ label {
 
 .venue,
 .artist {
-  width: 70%;
+  width: 90%;
   display: grid;
 }
 

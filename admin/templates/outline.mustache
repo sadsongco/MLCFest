@@ -1,14 +1,17 @@
 <section id="venues" class="typeContainer">
-  <div id="venuesList" class="venuesList" hx-get="admin/php/getVenues.php" hx-trigger="load, newVenue from:body" hx-target="this"></div>
+  <h2 class="containerTitle">Venues</h2>
+  <div id="venuesList" class="list" hx-get="admin/php/getVenues.php" hx-trigger="load, newVenue from:body" hx-target="this"></div>
   <div id="newVenueForm" hx-get="admin/php/newVenueForm.php" hx-trigger="load, clearVenueForm from:body" hx-target="this"></div>
 </section>
 
 <section id="artists" class="typeContainer">
-  <div id="artistList" class="artistList" hx-get="admin/php/getArtists.php" hx-trigger="load, newArtist from:body" hx-target="this"></div>
+  <h2 class="containerTitle">Artists</h2>
+  <div id="artistList" class="list" hx-get="admin/php/getArtists.php" hx-trigger="load, newArtist from:body" hx-target="this"></div>
   <div id="newArtistForm" hx-get="admin/php/newArtistForm.php" hx-trigger="load, clearArtistForm from:body" hx-target="this"></div>
 </section>
 
 <section id="shows" class="typeContainer">
-  <div id="showList" class="showList" hx-get="admin/php/getShows.php" hx-trigger="load, newShow from:body" hx-target="this"></div>
+  <h2 class="containerTitle">Shows</h2>
+  <div id="showList" class="list" hx-get="admin/php/getShows.php" hx-trigger="load, newShow from:body" hx-target="this"></div>
   <div id="newShowForm" hx-get="admin/php/newShowForm.php" hx-trigger="load, clearShowForm from:body, newVenue from:body, newArtist from:body" hx-target="this"></div>
 </section>
