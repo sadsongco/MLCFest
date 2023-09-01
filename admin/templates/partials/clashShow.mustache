@@ -1,0 +1,11 @@
+                <div class='show' style="height:calc({{show_length}}px - 1px); margin-top:{{changeover}}px; background-color:{{show_colour}}";>
+                    <div class="clashArtist">{{artist_name}}</div>
+                      <div class="clashShowEdit">
+                        <button hx-get="admin/php/newShowForm.php?edit={{show_id}}" hx-trigger="click" hx-target="#newShowForm">Edit Show</button>
+                    </div>  
+                    <div class="clashShowEdit">
+                        <button hx-get="admin/php/deleteShow.php?id={{show_id}}" hx-trigger="click" hx-confirm="Delete Show?" >
+                            Delete
+                        </button>
+                    </div>  
+                </div>

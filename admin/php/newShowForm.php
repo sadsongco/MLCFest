@@ -10,23 +10,40 @@ $m = new Mustache_Engine(array(
     'partials_loader' => new Mustache_Loader_FilesystemLoader('../templates/partials')
 ));
 
-function fillParameterArray($id_name, $table, $db) {
-    $query = "SELECT $id_name, name FROM $table;";
+function fillParameterArray($id_name, $table, $db, $show) {
+    $query = "SELECT $id_name"."_id".", name FROM $table;";
     
     $result = $db->query($query)->fetchAll(PDO::FETCH_ASSOC);
     $params = [];
     
     foreach($result as $row) {
-        $params[] = ["id"=>$row[$id_name], "name"=>$row['name']];
+        $param_arr = ["id"=>$row[$id_name."_id"], "name"=>$row['name']];
+        if (isset($show[$id_name]) && $show[$id_name] == $row[$id_name."_id"]) {
+            $param_arr["selected"] = "selected";
+        }
+        $params[] = $param_arr;
     }
     return $params;
 }
 
-$artists = fillParameterArray("artist_id", "Artists", $db);
-$venues = fillParameterArray("venue_id", "Venues", $db);
+function getShow($id, $db) {
+    $query = "SELECT * FROM Shows WHERE show_id=?;";
+    $stmt = $db->prepare($query);
+    $stmt->execute([$id]);
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result[0];
+}
 
-echo $m->render("newShowForm", ["artists"=>$artists, "venues"=>$venues]);
+$show = ["start_time"=>"2023-08-30T16:00", "end_time"=>"2023-08-30T16:00"];
+if (isset($_GET) && sizeof($_GET) > 0 && $_GET['edit']) {
+    $show = getShow($_GET['edit'], $db);
+    $show["update"] = true;
+}
 
+$artists = fillParameterArray("artist", "Artists", $db, $show);
+$venues = fillParameterArray("venue", "Venues", $db, $show);
+
+echo $m->render("newShowForm", ["artists"=>$artists, "venues"=>$venues, "show"=>$show]);
 
 require_once("../../../secure/mlc/db_disconnect.php");
 

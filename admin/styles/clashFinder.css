@@ -1,0 +1,64 @@
+.clashFinder {
+  display: grid;
+  grid-template-columns: 40px minmax(80vw, 1fr);
+  gap: 5px;
+  width: 90vw;
+  margin: 1vw;
+  padding: 1vw;
+  border: 1px solid #780304;
+}
+
+.venueTracks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.venueTrack {
+  display: block;
+  break-after: column;
+  border-right: 1px solid #444;
+  padding: 0 2px;
+  height: auto;
+}
+
+.venueTrack:last-of-type {
+  border-right: none;
+}
+
+.venueTitle {
+  height: 25px;
+  text-align: center;
+}
+
+.timeGuide {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 200;
+  font-size: 0.8em;
+  border: none;
+}
+
+.timeGuide .clock {
+  height: 10px;
+  width: 90vw;
+  margin-top: 49px;
+  border-top: 1px dashed #666;
+}
+
+.timeGuide .open {
+  margin-top: 0;
+}
+
+.clashFinder .venueTrack {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.venueTrack .show {
+  padding: 2px;
+  clear: both;
+}
+
+.clashShowEdit {
+  display: inline-block;
+}
