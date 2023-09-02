@@ -114,3 +114,31 @@ input[type='submit'] {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360);
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0turn);
+  }
+  100% {
+    transform: rotate(2turn);
+  }
+}
+
+.loading {
+  max-width: 100px;
+  opacity: 0.8;
+  transform-origin: 50% 42%;
+  animation-name: loading;
+  animation-duration: 2s;
+  animation-timing-function: cubic-bezier(0.6, 1, 0.7, 0);
+  animation-iteration-count: infinite;
+}
