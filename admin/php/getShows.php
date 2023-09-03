@@ -17,6 +17,7 @@ try {
     $venues = $db->query($query)->fetchAll(PDO::FETCH_ASSOC);
     
     $query = "SELECT Shows.start_time, Shows.end_time, Shows.notes, Shows.show_id,
+                DATE_FORMAT(Shows.start_time, '%H:%i') AS start_disp, DATE_FORMAT(Shows.end_time, '%H:%i') AS end_disp, 
                 ROUND(TIME_TO_SEC(TIMEDIFF(end_time, start_time))/60) AS show_length,
                 Artists.name AS artist_name,
                 Venues.venue_id AS venue_id
