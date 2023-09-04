@@ -1,0 +1,46 @@
+.clashFinderContainer {
+  margin-top: 3em;
+  position: relative;
+  width: 80vw;
+  border: 1px solid red;
+}
+
+.clashfinderShow {
+  position: absolute;
+  padding: 2px;
+  width: 50%;
+}
+
+.venueTracks {
+  position: relative;
+}
+
+.clashfinderShow:nth-of-type(odd) {
+  left: 0;
+}
+
+.clashfinderShow:nth-of-type(even) {
+  text-align: right;
+  right: 0;
+}
+
+.timeGuide {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 200;
+  font-size: 0.8em;
+  border: none;
+  position: absolute;
+  width: 100%;
+}
+
+.timeGuide .clock {
+  height: 10px;
+  /* width: 90vw;
+   */
+  margin-top: 149px;
+  border-top: 1px dashed #666;
+}
+
+.timeGuide .open {
+  margin-top: 0;
+}
