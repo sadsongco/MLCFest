@@ -1,13 +1,16 @@
-.clashFinderContainer {
-  margin-top: 3em;
+.clashfinderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.clashFinder {
   position: relative;
   width: 80vw;
-  border: 1px solid red;
 }
 
 .clashfinderShow {
-  position: absolute;
-  padding: 2px;
+  padding: 0 0.3em;
   width: 50%;
 }
 
@@ -16,29 +19,38 @@
 }
 
 .clashfinderShow:nth-of-type(odd) {
-  left: 0;
+  margin-left: 0px;
+  margin-right: auto;
 }
 
 .clashfinderShow:nth-of-type(even) {
   text-align: right;
-  right: 0;
+  margin-right: 0px;
+  margin-left: auto;
 }
 
 .timeGuide {
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: 200;
-  font-size: 0.8em;
   border: none;
   position: absolute;
-  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80vw;
 }
 
 .timeGuide .clock {
-  height: 10px;
-  /* width: 90vw;
-   */
-  margin-top: 149px;
+  color: rgba(255, 255, 255, 0.7);
+  position: absolute;
+  width: 80vw;
   border-top: 1px dashed #666;
+  z-index: 4;
+}
+
+.timeGuide .clock .clockText {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 200;
+  font-size: 0.5em;
+  position: absolute;
+  left: -3em;
 }
 
 .timeGuide .open {

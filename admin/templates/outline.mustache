@@ -1,3 +1,20 @@
+<section id="params" class="typeContainer">
+  <form hx-post="admin/php/addParam.php" target="this" class="newForm" autocomplete="on">
+      <label for="festivalStart">
+        Festival Doors Open
+        <input type="datetime-local" name="festivalStart" id="festivalStart" required="" value="2023-08-30 14:00:00">
+      </label>
+      <label for="festivalEnd">
+        Festival Doors Open
+        <input type="datetime-local" name="festivalEnd" id="festivalEnd" required="" value="2023-08-30 23:00:00">
+      </label>
+      <label for="paramSubmit">
+          Update Start Time
+          <input id="paramSubmit" type="submit" value="Update">
+        </label>
+    </form>
+</section>
+
 <section id="venues" class="typeContainer">
   <h2 class="containerTitle">Venues</h2>
   <div id="venuesList" class="list" hx-get="admin/php/getVenues.php" hx-trigger="load, newVenue from:body" hx-target="this">
