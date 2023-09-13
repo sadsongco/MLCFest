@@ -6,10 +6,10 @@
   <div class="artistLink">{{threads}}</div>
   <div class="artistLink">{{facebook}}</div>
   <div class="artistEdit">
-    <button hx-get="admin/php/newArtistForm.php?edit={{artist_id}}" hx-trigger="click" hx-target="#newArtistForm">Edit Artist</button>
+    <button hx-get="php/newArtistForm.php?edit={{artist_id}}" hx-trigger="click" hx-target="#newArtistForm">Edit Artist</button>
   </div>  
   <div class="venueEdit">
-    <button hx-get="admin/php/deleteArtist.php?id={{artist_id}}" hx-trigger="click" hx-confirm="Delete artist {{name}}? This will delete all shows for this artist." >
+    <button hx-get="php/deleteArtist.php?id={{artist_id}}" hx-trigger="click" hx-confirm="Delete artist {{name}}? This will delete all shows for this artist." >
         Delete
     </button>
   </div>  

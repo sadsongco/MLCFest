@@ -18,7 +18,7 @@ try {
 catch(PDOException $e) {
     echo $e->getmessage();
 }
-header ('HX-Trigger:clearVenueForm');
+header ('HX-Trigger:clearArtistForm');
 header ('HX-Trigger-After-Settle:newArtist');
 
 require_once("../../../secure/mlc/db_disconnect.php");

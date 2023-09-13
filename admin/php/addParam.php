@@ -22,9 +22,7 @@ foreach ($params as $param) {
         exit;
     }
 }
-
-
-echo "Festival Parameter Updated";
+header ('HX-Trigger:updateParamsForm');
 
 require_once("../../../secure/mlc/db_disconnect.php");
 

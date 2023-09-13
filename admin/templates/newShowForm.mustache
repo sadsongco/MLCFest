@@ -4,7 +4,7 @@
     {{#show.update}}
       <h2>Update Show Info</h2>
     {{/show.update}}
-    <form hx-post="admin/php/{{^show.update}}addShow.php{{/show.update}}{{#show.update}}updateShow.php{{/show.update}}" target="this" class="newForm" autocomplete="on">
+    <form hx-post="php/{{^show.update}}addShow.php{{/show.update}}{{#show.update}}updateShow.php{{/show.update}}" target="this" class="newForm" autocomplete="on">
     <label for="venueSelect">
         Select Venue
         <select name="venue" id="venueSelect">

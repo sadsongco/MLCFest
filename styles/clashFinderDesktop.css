@@ -1,0 +1,70 @@
+.clashfinderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timeGuide {
+  border: none;
+  position: absolute;
+  left: 10vw;
+}
+
+.timeGuide .clock {
+  color: rgba(255, 255, 255, 0.7);
+  position: absolute;
+  width: 80vw;
+  border-top: 1px dashed #666;
+  z-index: 4;
+}
+
+.timeGuide .clock .clockText {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 200;
+  font-size: 0.5em;
+  position: absolute;
+  left: -3em;
+}
+
+.timeGuide .open {
+  margin-top: 0;
+}
+
+.venueTracks {
+  margin: 0 1vw;
+  padding: 0 1vw;
+  border: 1px solid #780304;
+  width: 80vw;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 5px;
+}
+
+.venueTrack {
+  display: block;
+  position: relative;
+  break-after: column;
+  border-right: 1px solid #444;
+  /* padding: 0 2px; */
+  height: auto;
+}
+
+.venueTrack:last-of-type {
+  border-right: none;
+}
+/* 
+*/
+.venueTitle {
+  height: 25px;
+  text-align: center;
+}
+
+.venueTrack .show {
+  padding: 2px;
+  clear: both;
+}
+
+/*
+.clashShowEdit {
+  display: inline-block;
+} */

@@ -4,7 +4,7 @@
   {{#update}}
     <h2>Update Artist Info</h2>
   {{/update}}
-  <form hx-post="admin/php/{{^update}}addArtist.php{{/update}}{{#update}}updateArtist.php{{/update}}" target="this" class="newForm" autocomplete="on">
+  <form hx-post="php/{{^update}}addArtist.php{{/update}}{{#update}}updateArtist.php{{/update}}" target="this" class="newForm" autocomplete="on">
   <label for="artistName">
     Artist Name
     <input type="text" name="name" id="artistName" required autocomplete="on" value="{{name}}" />

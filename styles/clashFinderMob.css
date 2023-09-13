@@ -56,3 +56,16 @@
 .timeGuide .open {
   margin-top: 0;
 }
+
+.clashfinderShowVenue {
+  padding-top: 15px;
+  font-size: 0.8em;
+  font-style: italic;
+  color: #999;
+}
+
+.clashfinderShowTimes {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.6em;
+  color: #999;
+}

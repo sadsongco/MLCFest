@@ -4,7 +4,7 @@
     {{#update}}
       <h2>Update Venue Info</h2>
     {{/update}}
-    <form hx-post="admin/php/{{^update}}addVenue.php{{/update}}{{#update}}updateVenue.php{{/update}}" target="this" class="newForm" autocomplete="on">
+    <form hx-post="php/{{^update}}addVenue.php{{/update}}{{#update}}updateVenue.php{{/update}}" target="this" class="newForm" autocomplete="on">
       <label for="venueName">
         Venue Name
         <input type="text" name="name" id="venueName" required autocomplete="on" value="{{name}}" />

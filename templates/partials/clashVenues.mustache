@@ -1,0 +1,8 @@
+    {{#venues}}
+        <div class='venueTrack'>
+            <div class='venueTitle' style="background-color:{{colour}}">{{venue_name}}</div>
+            {{#shows}}
+                {{> clashShow}}
+            {{/shows}}
+        </div>
+    {{/venues}}

@@ -2,6 +2,8 @@
 
 require_once("../../../secure/mlc/db_connect.php");
 
+$params = [];
+
 foreach($_POST as $key=>$value) {
     if ($key != "showUpdate") {
         $params[$key] = $value;
@@ -9,7 +11,7 @@ foreach($_POST as $key=>$value) {
 }
 
 try {
-    $query = "UPDATE SHOWS
+    $query = "UPDATE Shows
     SET venue=:venue, artist=:artist, start_time=:start_time, end_time=:end_time, notes=:notes
     WHERE show_id=:show_id;";
     $stmt = $db->prepare($query);

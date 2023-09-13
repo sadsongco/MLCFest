@@ -14,13 +14,13 @@ $output = [];
 
 try {
     $query = "SELECT venue_id, name FROM Venues;";
-    $venues_res = $db->query($query)->fetchAll(PDO::FETCH_ASSOC);
+    $venues = $db->query($query)->fetchAll(PDO::FETCH_ASSOC);
     
     $query = "SELECT Shows.start_time, Shows.end_time, Shows.notes, Shows.show_id,
                 DATE_FORMAT(Shows.start_time, '%H:%i') AS start_disp, DATE_FORMAT(Shows.end_time, '%H:%i') AS end_disp, 
-                ROUND(TIME_TO_SEC(TIMEDIFF(end_time, start_time))/60) AS show_length,
+                ROUND(TIME_TO_SEC(TIMEDIFF(end_time, start_time))/60)*3 AS show_length,
                 Artists.name AS artist_name,
-                Venues.venue_id AS venue_id, Venues.name AS venue_name
+                Venues.venue_id AS venue_id
                 FROM Shows
                 LEFT JOIN Artists ON Shows.artist = Artists.artist_id
                 LEFT JOIN Venues ON Shows.venue = Venues.venue_id
@@ -42,14 +42,21 @@ foreach($params as $param) {
 include ("./includes/colourPalette.php");
 $colours = ["#09aa09", "#0959aa", "#aa09aa", "#aa5909"];
 
-$venues = [];
+$output["venues"] = [];
 
-foreach ($venues_res as $venue) {
-    $venue["colour"] = array_shift($colours);
-    $pallette_col = new ColorPalette($venue["colour"]);
-    $venue["pallette"] = $pallette_col->createPalette();
-    $venues[$venue["venue_id"]] = $venue;
-    $colours[] = $venue["colour"];
+foreach ($venues as $venue) {
+    $venue_colour = array_shift($colours);
+    $colours[] = $venue_colour;
+    $output["venues"][] = ["venue_name"=>$venue["name"], "venue_id"=>$venue["venue_id"], "shows"=>[], "colour"=>$venue_colour];
+}
+
+foreach ($shows as $show) {
+    foreach ($output["venues"] as &$venue) {
+        if ($show["venue_id"] == $venue["venue_id"]) {
+            $venue["shows"][] = $show;
+            continue;
+        }
+    }
 }
 
 $festival_start_time = new DateTime($params_arr["festivalStart"]);
@@ -57,17 +64,21 @@ $festival_end_time = new DateTime($params_arr["festivalEnd"]);
 
 $prev_show["end_time"] = $params_arr["festivalStart"];
 
-foreach ($shows as &$show) {
-    $show["colour"] = array_shift($venues[$show["venue_id"]]["pallette"]);
-    $venues[$show["venue_id"]]["pallette"][] = $show["colour"];
-    $show_start = new DateTime($show["start_time"]);
-    $prev_show_end = new DateTime($prev_show["end_time"]);
-    $diff_in_seconds = $show_start->getTimestamp() - $prev_show_end->getTimestamp();
-    $show["pixel_position"] = floor($diff_in_seconds / 60) * 3;
-    $prev_show = $show;
+foreach ($output["venues"] as &$venue) {
+    $venue_col = new ColorPalette($venue["colour"]);
+    $show_colours = $venue_col->createPalette();
+    foreach ($venue["shows"] as &$show) {
+        $show["show_colour"] = array_shift($show_colours);
+        $show_colours[] = $show["show_colour"];
+        $show_start = new DateTime($show["start_time"]);
+        $prev_show_end = new DateTime($prev_show["end_time"]);
+        $diff_in_seconds = $show_start->getTimestamp() - $prev_show_end->getTimestamp();
+        $show["changeover"] = floor($diff_in_seconds / 60) * 3;
+        $prev_show = $show;
+    }
 }
 
-// echo "<pre>"; print_r($shows); echo "</pre>";
+// echo "<pre>"; print_r($output); echo "</pre>";
 
 $festival_start_hour = $festival_start_time->format('H');
 if ($festival_start_hour > 12) $festival_start_hour -= 12;
@@ -91,7 +102,7 @@ for ($i = $festival_start_hour; $i <= $festival_end_hour; $i++) {
 
 $output["shows"] = $shows;
 
-echo $m->render("clashFinderMob", $output);
+echo $m->render("clashFinderDesktop", $output);
 
 require_once("../../secure/mlc/db_disconnect.php");
 

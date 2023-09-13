@@ -1,0 +1,9 @@
+  <form hx-post="php/addParam.php" target="this" class="newForm" autocomplete="on">
+  {{# params }}
+    {{> paramInput}}
+  {{/params}}
+      <label for="paramSubmit">
+          Update Start Time
+          <input id="paramSubmit" type="submit" value="Update">
+        </label>
+    </form>
