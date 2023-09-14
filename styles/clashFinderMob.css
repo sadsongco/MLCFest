@@ -1,21 +1,6 @@
-.clashfinderContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.clashFinder {
-  position: relative;
-  width: 80vw;
-}
-
 .clashfinderShow {
-  padding: 0 0.3em;
-  width: 50%;
-}
-
-.venueTracks {
-  position: relative;
+  font-size: 1.6em;
+  width: 51%;
 }
 
 .clashfinderShow:nth-of-type(odd) {
@@ -27,34 +12,6 @@
   text-align: right;
   margin-right: 0px;
   margin-left: auto;
-}
-
-.timeGuide {
-  border: none;
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80vw;
-}
-
-.timeGuide .clock {
-  color: rgba(255, 255, 255, 0.7);
-  position: absolute;
-  width: 80vw;
-  border-top: 1px dashed #666;
-  z-index: 4;
-}
-
-.timeGuide .clock .clockText {
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: 200;
-  font-size: 0.5em;
-  position: absolute;
-  left: -3em;
-}
-
-.timeGuide .open {
-  margin-top: 0;
 }
 
 .clashfinderShowVenue {

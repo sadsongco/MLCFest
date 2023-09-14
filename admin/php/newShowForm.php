@@ -35,6 +35,7 @@ function getShow($id, $db) {
 }
 
 $show = ["start_time"=>"2023-08-30T16:00", "end_time"=>"2023-08-30T16:00"];
+
 if (isset($_GET) && sizeof($_GET) > 0 && $_GET['edit']) {
     $show = getShow($_GET['edit'], $db);
     $show["update"] = true;

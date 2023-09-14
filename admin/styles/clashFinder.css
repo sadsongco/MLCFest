@@ -1,4 +1,4 @@
-.clashFinder {
+/* .clashFinder {
   display: grid;
   grid-template-columns: 40px minmax(80vw, 1fr);
   gap: 5px;
@@ -30,24 +30,6 @@
   text-align: center;
 }
 
-.timeGuide {
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: 200;
-  font-size: 0.8em;
-  border: none;
-}
-
-.timeGuide .clock {
-  height: 10px;
-  width: 90vw;
-  margin-top: 49px;
-  border-top: 1px dashed #666;
-}
-
-.timeGuide .open {
-  margin-top: 0;
-}
-
 .clashFinder .venueTrack {
   position: relative;
   display: flex;
@@ -61,4 +43,4 @@
 
 .clashShowEdit {
   display: inline-block;
-}
+} */

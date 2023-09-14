@@ -23,7 +23,9 @@
     <link rel="stylesheet" href="styles/vars.css" />
     <link rel="stylesheet" href="styles/mlc230324.css" />
     <link rel="stylesheet" href="styles/nav.css" />
+    <link rel="stylesheet" href="styles/clashFinder.css" />
     <link rel="stylesheet" href="styles/clashFinderMob.css" />
+    <link rel="stylesheet" href="styles/timeGuide.css" />
     <title>Misery Loves Company Festival</title>
   </head>
   <body>
@@ -45,9 +47,9 @@
       <section id="logo-container">
         <img src="./assets/graphics/logo_mobile.png" alt="Misery Loves Company festival 2023 logo - a heart containing a skull surrounded by water droplets, with a star above" />
       </section>
-      <div class="clashfinderContainer">
+      <div class="clashFinderContainer">
         <h2>Clashfinder</h2>
-        <section hx-get="api/getShowsMobile.php" hx-trigger="load"></section>
+        <section hx-get="api/getShowsMobile.php" hx-trigger="load" class="clashFinder"></section>
       </div>
     </main>
     <footer>

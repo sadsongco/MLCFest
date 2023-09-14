@@ -6,14 +6,16 @@
     <script src="../lib/htmx.min.js"></script>
     <link rel="stylesheet" href="../styles/reset.css" />
     <link rel="stylesheet" href="../styles/vars.css" />
-    <link rel="stylesheet" href="styles/style.css" />
-    <link rel="stylesheet" href="styles/clashFinder.css" />
+    <link rel="stylesheet" href="../admin/styles/style.css" />
+    <link rel="stylesheet" href="../admin/styles/clashFinder.css" />
+    <link rel="stylesheet" href="../styles/clashFinderDesktop.css" />
+    <link rel="stylesheet" href="../styles/timeGuide.css" />
     <title>Misery Loves Company Festival - Admin Page</title>
   </head>
   <body>
     <h1>Misery Loves Company Festival</h1>
     <h2>Admin Page</h2>
-    <main hx-get="php/getContent.php" hx-trigger="load">
+    <main hx-get="../admin/php/getContent.php" hx-trigger="load">
       Your browser must have javascript enabled to use this page.
       <img src="/assets/graphics/mlc_icon_small.svg" alt="loading spinner" class="htmx-indicator loading" />
     </main>

@@ -1,6 +1,8 @@
     <div class="timeGuide">
         <div class='venueTitle'>&nbsp;</div>
         {{#time_guide}}
-            <div class="clock {{#open}}open{{/open}}">{{time}}</div>
+            <div class="clock {{#open}}open{{/open}}" style="margin-top: {{margin_position}}">
+                <div class="clockText">{{time}}</div>
+            </div>
         {{/time_guide}}
     </div>

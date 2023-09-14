@@ -1,13 +1,17 @@
 <?php
 
 require_once("../../../secure/mlc/db_connect.php");
+include_once("../../api/includes/getParams.php");
+include_once("../../api/includes/generateTimeGuide.php");
+include_once("../../api/includes/generateClashfinderVenues.php");
+include_once("../../api/includes/addClashfinderVenueShows.php");
 
 require '../../lib/mustache.php-main/src/Mustache/Autoloader.php';
 Mustache_Autoloader::register();
 
 $m = new Mustache_Engine(array(
-    'loader' => new Mustache_Loader_FilesystemLoader('../templates'),
-    'partials_loader' => new Mustache_Loader_FilesystemLoader('../templates/partials')
+    'loader' => new Mustache_Loader_FilesystemLoader('../../templates'),
+    'partials_loader' => new Mustache_Loader_FilesystemLoader('../../templates/partials')
 ));
 
 $output = [];
@@ -28,56 +32,20 @@ try {
                 ;";
     
     $shows = $db->query($query)->fetchAll(PDO::FETCH_ASSOC);
+    $params_arr = getParams($db);
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
 
-$output["time_guide"] = [];
+$clash_finder_size = 1;
 
-for ($i = 4; $i < 12; $i++) {
-    if ($i == 4) {
-        $output["time_guide"][] = ["time"=>"$i pm", "open"=>true];
-    } else {
-        $output["time_guide"][] = ["time"=>"$i pm"];
-    }
-}
+$output["time_guide"] = generateTimeGuide($params_arr, $clash_finder_size);
 
-$output["venues"] = [];
-include ("./includes/colourPalette.php");
-$colours = ["#09aa09", "#0959aa", "#aa09aa", "#aa5909"];
+$output["venues"] = generateClashfinderVenues($venues);
 
-foreach ($venues as $venue) {
-    $venue_colour = array_shift($colours);
-    $colours[] = $venue_colour;
-    $output["venues"][] = ["venue_name"=>$venue["name"], "venue_id"=>$venue["venue_id"], "shows"=>[], "colour"=>$venue_colour];
-}
+addClashfinderVenueShows($output["venues"], $shows, $params_arr, $clash_finder_size);
 
-
-foreach ($shows as $show) {
-    foreach ($output["venues"] as &$venue) {
-        if ($show["venue_id"] == $venue["venue_id"]) {
-            $venue["shows"][] = $show;
-            continue;
-        }
-    }
-}
-
-foreach ($output["venues"] as &$venue) {
-    $venue_col = new ColorPalette($venue["colour"]);
-    $show_colours = $venue_col->createPalette();
-    $prev_show["end_time"] = "2023-08-30 16:00:00";
-    foreach ($venue["shows"] as &$show) {
-        $show["show_colour"] = array_shift($show_colours);
-        $show_colours[] = $show["show_colour"];
-        $show_start = new DateTime($show["start_time"]);
-        $prev_show_end = new DateTime($prev_show["end_time"]);
-        $diff_in_seconds = $show_start->getTimestamp() - $prev_show_end->getTimestamp();
-        $show["changeover"] = floor($diff_in_seconds / 60);
-        $prev_show = $show;
-    }
-}
-
-echo $m->render("clashFinder", $output);
+echo $m->render("clashFinderDesktop", $output);
 
 require_once("../../../secure/mlc/db_disconnect.php");
 

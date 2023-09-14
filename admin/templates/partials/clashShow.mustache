@@ -1,4 +1,4 @@
-                <div class='show' style="height:calc({{show_length}}px - 4px); margin-top:{{changeover}}px; background-color:{{show_colour}}";>
+                <div class='show' style="height:{{pixel_size}}px; margin-top:{{changeover}}px; background-color:{{show_colour}}";>
                     <div class="clashArtist">{{artist_name}} [{{start_disp}} - {{end_disp}}]</div>
                       <div class="clashShowEdit">
                         <button hx-get="php/newShowForm.php?edit={{show_id}}" hx-trigger="click" hx-target="#newShowForm">Edit Show</button>
