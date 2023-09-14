@@ -2,7 +2,7 @@
 
 include_once("print_r2.php");
 
-function addClashfinderVenueShows(&$venues, $shows, $params_arr, $clash_finder_size) {
+function addClashfinderVenueShows(&$venues, $shows, $params_arr, $clash_finder_size, $admin=false) {
     foreach ($shows as $show) {
         foreach ($venues as &$venue) {
             if ($show["venue_id"] == $venue["venue_id"]) {
@@ -30,6 +30,7 @@ function addClashfinderVenueShows(&$venues, $shows, $params_arr, $clash_finder_s
             $show["changeover"] = floor($diff_in_seconds / 60) * $clash_finder_size;
             $after_spacer_seconds = $festival_end->getTimestamp() - $show_end->getTimestamp();
             $show["after_spacer"] = floor($after_spacer_seconds / 60) * $clash_finder_size;
+            if ($admin == true) $show["admin"] = true;
             $prev_show = &$show;
         }
     }

@@ -1,4 +1,14 @@
 <div class="clashfinderShow" style="height:{{pixel_size}}px; margin-top:{{changeover}}px; margin-bottom:{{after_spacer}}px; background-color:{{show_colour}}">
     <div class="clashfinderShowArtist">{{ artist_name }}</div>
     <div class="clashfinderShowTimes">{{start_disp}} - {{end_disp}}</div>
+    {{#admin}}
+        <div class="clashShowEdit">
+            <button hx-get="../admin/php/newShowForm.php?edit={{show_id}}" hx-trigger="click" hx-target="#newShowForm">Edit Show</button>
+        </div>  
+        <div class="clashShowEdit">
+            <button hx-get="../admin/php/deleteShow.php?id={{show_id}}" hx-trigger="click" hx-confirm="Delete Show?" >
+                Delete
+            </button>
+        </div>  
+    {{/admin}}
 </div>

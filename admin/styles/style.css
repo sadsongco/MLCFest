@@ -108,7 +108,10 @@ input[type='submit'] {
   grid-template-columns: 2fr repeat(7, 1fr);
 }
 
-.artistBio {
+.artistBio,
+.artistLink {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8em;
   max-width: 250px;
   white-space: nowrap;
   overflow: hidden;

@@ -37,13 +37,13 @@ try {
     echo $e->getMessage();
 }
 
-$clash_finder_size = 1;
+$clash_finder_size = 2;
 
-$output["time_guide"] = generateTimeGuide($params_arr, $clash_finder_size);
+if (count($shows) > 0) $output["time_guide"] = generateTimeGuide($params_arr, $clash_finder_size);
 
 $output["venues"] = generateClashfinderVenues($venues);
 
-addClashfinderVenueShows($output["venues"], $shows, $params_arr, $clash_finder_size);
+addClashfinderVenueShows($output["venues"], $shows, $params_arr, $clash_finder_size, true);
 
 echo $m->render("clashFinderDesktop", $output);
 
