@@ -1,7 +1,7 @@
 .venueTracks {
   display: grid;
   gap: 3px;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
   margin: 0 1vw;
   padding: 0 1vw;
 }
@@ -16,7 +16,15 @@
 }
 
 .venueTitle {
+  color: #000;
   height: 25px;
+  max-height: 25px;
   text-align: center;
   vertical-align: middle;
+}
+
+@media (orientation: portrait) {
+  .venueTitle {
+    font-size: 0.7em;
+  }
 }

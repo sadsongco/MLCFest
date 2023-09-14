@@ -17,7 +17,7 @@ $m = new Mustache_Engine(array(
 $output = [];
 
 try {
-    $query = "SELECT venue_id, name FROM Venues;";
+    $query = "SELECT venue_id, name, colour FROM Venues;";
     $venues = $db->query($query)->fetchAll(PDO::FETCH_ASSOC);
     
     $query = "SELECT Shows.start_time, Shows.end_time, Shows.notes, Shows.show_id,

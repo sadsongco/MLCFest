@@ -34,7 +34,7 @@ function getShow($id, $db) {
     return $result[0];
 }
 
-$show = ["start_time"=>"2023-08-30T16:00", "end_time"=>"2023-08-30T16:00"];
+$show = ["start_time"=>"2023-09-30T16:00", "end_time"=>"2023-09-30T17:00"];
 
 if (isset($_GET) && sizeof($_GET) > 0 && $_GET['edit']) {
     $show = getShow($_GET['edit'], $db);

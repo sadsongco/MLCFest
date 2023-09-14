@@ -187,6 +187,11 @@ let showStatus = false;
 const navList = document.getElementById('nav-bar').getElementsByTagName('li');
 for (const liItem of navList) {
   liItem.onclick = () => {
+    const target = liItem.getElementsByTagName('a')[0].dataset.target;
+    if (target.substring(target.length - 4) === 'html') {
+      window.location.href = target;
+      return;
+    }
     document.getElementById(liItem.getElementsByTagName('a')[0].dataset.target).scrollIntoView();
   };
 }

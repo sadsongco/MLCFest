@@ -9,7 +9,7 @@ foreach($_POST as $key=>$value) {
 }
 
 try {
-    $query = "INSERT INTO Venues VALUES (0, :name, :post_code, :address_1, :address_2, :city);";
+    $query = "INSERT INTO Venues VALUES (0, :name, :post_code, :address_1, :address_2, :city, :colour);";
     $stmt = $db->prepare($query);
     $stmt->execute($params);
 }

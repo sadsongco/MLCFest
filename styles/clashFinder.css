@@ -1,9 +1,8 @@
 main {
-  font-size: 1em;
   display: block;
   width: 100vw;
   max-width: auto;
-  color: #bbb;
+  color: #ddd;
 }
 
 h2 {
@@ -21,8 +20,25 @@ h2 {
 }
 
 .clashFinder {
-  font-size: 1rem;
+  font-size: 0.9rem;
   position: relative;
-  width: 90%;
-  margin-left: 5%;
+  width: 94%;
+  margin-left: 3%;
+}
+
+.showInnerContainer {
+  padding: 0.3em;
+}
+
+.clashfinderShowTimes {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: #bbb;
+}
+
+@media (orientation: portrait) {
+  .clashFinder {
+    font-size: 0.7rem;
+  }
 }

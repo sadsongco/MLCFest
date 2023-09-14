@@ -5,7 +5,7 @@
   <div class="venueAddress">{{city}}</div>
   <div class="venueAddress">{{post_code}}</div>
   <div class="venueEdit">
-    <button hx-get="php/newVenueForm.php?edit={{venue_id}}" hx-trigger="click" hx-target="#newVenueForm">Edit Venue</button>
+    <button hx-get="../admin/php/newVenueForm.php?edit={{venue_id}}" hx-trigger="click" hx-target="#newVenueForm">Edit Venue</button>
   </div>  
   <div class="venueEdit">
     <button hx-get="php/deleteVenue.php?id={{venue_id}}" hx-trigger="click" hx-confirm="Delete venue {{name}}? This will delete all shows at this venue." >
