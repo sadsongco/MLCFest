@@ -57,9 +57,20 @@ h1 {
   border-bottom: 1px white solid;
 }
 
-p {
+p,
+ul.faq {
   color: var(--std-text-color);
   font-size: var(--std-text-size);
+}
+
+ul.faq {
+  font-size: 0.7em;
+  margin: 20px 1em;
+  list-style-type: circle;
+}
+
+ul.faq li {
+  margin-bottom: 5px;
 }
 
 img {
@@ -86,6 +97,10 @@ img {
 #about-container,
 #ticket-container {
   padding-top: 40px;
+}
+
+#faq-container {
+  padding-top: 80px;
 }
 
 #countdown {
