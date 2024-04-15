@@ -1,0 +1,114 @@
+/* mobile first */
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background-color: var(--background);
+  color: var(--pink-text);
+  font-family: main-text;
+  font-size: var(--main-text-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  background: var(--background) url('../assets/graphics/bg_prtrt.jpg') no-repeat center center;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+main {
+  width: 80%;
+  max-width: 96%;
+  height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  color: var(--cta-text-color);
+}
+
+a:hover {
+  color: var(--cta-text-hover-color);
+  cursor: pointer;
+}
+
+a.button {
+  color: var(--button-text-colour);
+  display: block;
+  margin: 0.5em;
+  padding: 0.2em;
+  border: 2px solid var(--pink-text);
+  border-radius: 10px;
+  background-color: var(--button-background-colour);
+  transition: background-color 0.15s ease-in;
+}
+
+a.button:hover {
+  background-color: var(--button-hover-background-colour);
+}
+
+img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+#logo-container {
+  display: block;
+  aspect-ratio: 1/1;
+  height: 78vh;
+  max-width: 90vw;
+}
+
+#logo-container,
+#ticket-container {
+  text-align: center;
+  flex-basis: 100%;
+}
+
+footer {
+  flex-basis: 100%;
+  margin-top: 1em;
+  width: 100%;
+  height: 15vh;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#socials img {
+  padding: 1em;
+}
+
+footer a::after,
+footer a:visited::after {
+  content: '';
+}
+
+/* responsive desktop layout */
+@media screen and (min-width: 600px) {
+  body {
+    background: var(--background) url('../assets/graphics/bg.jpg') no-repeat center center;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+  }
+
+  main {
+    width: 60%;
+  }
+}
+
+/* developer */
+#dev {
+  position: fixed;
+  top: 30px;
+  left: 10px;
+}
